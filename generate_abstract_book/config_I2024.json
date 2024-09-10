@@ -1,0 +1,28 @@
+{
+    "excel_folder": "xlsx/",
+    "template_folder": "template/",
+    "result_folder": "result/",
+    
+    "master_input_filename": "Master_list_IARC2024_30May_BOA.xlsx",
+    "master_output_filename": "master_output_v3.xlsx",
+    
+    "template_input_filename": "tpl_resumenes_IARC2024_v6.docx",
+    "template_separator_filename": "tpl_separadores_IARC2024_v3.docx",
+    
+    "sheet_name": 0,
+    "abstract_id_column": "AbstractId",
+    
+    "line_dict": {
+      "ARs as a component of compound events": "AR1",
+      "ARs in past, present, and future climates": "AR2",
+      "Environmental and socioeconomic impacts  ARs": "AR3",
+      "Forecasting of ARs": "AR4",
+      "Observing, identification, and monitoring of ARs": "AR5",
+      "Physical, dynamic, & microphysic aspects of ARs": "AR6",
+      "Role of ARs in the changing Cryosphere": "AR7",
+      "Rejected": "R"
+    },
+    
+    "area_column_name": "Theme"
+  }
+  

@@ -1,0 +1,40 @@
+{
+    "excel_folder": "xlsx/DOCA2024/",
+    "template_folder": "templates/DOCA2024/",
+    "tmp_result_folder": "tmp_processing/DOCA2024/",
+    "output_folder": "AbstractBook/DOCA2024/",
+
+    "rejected_folder": "rejected/DOCA2024/",
+    
+    "master_input_filename": "DOCA_9Sep.xlsx",
+    "master_output_filename": "master_output.xlsx",
+    
+    "template_input_filename": "tpl_resumenes_DOCA7_BOA_Simple_v2.docx",
+    "template_separator_filename": "tpl_separadores_DOCA.docx",
+    
+    "sheet_name": 0,
+    "abstract_id_column": "AbsID",
+    "area_column_name": "Session",
+    "abstract_column_name": "Abstract",
+    "title_column_name": "Title",
+
+    
+    "line_dict": {
+        "Cambio Climático": "DOCA01", 
+        "Contaminación y química atmosférica": "DOCA02", 
+        "Desoxigenación e hipoxia": "DOCA03", 
+        "Estuarios y zonas costeras": "DOCA04", 
+        "Interacción Físico-Biológica": "DOCA05", 
+        "Interacción océano-atmósfera": "DOCA06", 
+        "Meteorología sinóptica y mesoescala": "DOCA07", 
+        "Oceanografía física regional": "DOCA08", 
+        "Oleaje y Tsunamis": "DOCA09", 
+        "Otros temas en Clima y Meteorología": "DOCA10", 
+        "Otros temas en Oceanografía física": "DOCA11", 
+        "Paleoclima": "DOCA12", 
+        "Variabilidad Climática": "DOCA13"
+
+    }
+    
+  }
+  
