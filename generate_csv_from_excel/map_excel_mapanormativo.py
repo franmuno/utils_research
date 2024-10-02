@@ -15,21 +15,22 @@ Se usan dataframes de pandas para cargar excel y generar csv
 
 Updated on 2024-05-210
 """
+import os
 import pandas as pd
 
+# Constants for input/output paths and file names
+FOLDER_IN = 'xlsx/'
+FOLDER_OUT = 'csv/'
+TIMESTAMP_MASTER = '20240812'
+MASTER_FILENAME = os.path.join(FOLDER_IN, f'MapaNormativoElementos_{TIMESTAMP_MASTER}.xlsx')
+SHEET_NAME1 = '4. Base de Datos'
+SHEET_NAME2 = '5. Leyes Transversales'
+OUT_CSV_FILENAME1 = os.path.join(FOLDER_OUT, f'MapaNormativo_BaseDatos_{TIMESTAMP_MASTER}.csv')
+OUT_CSV_FILENAME2 = os.path.join(FOLDER_OUT, f'MapaNormativo_LeyesTransv_{TIMESTAMP_MASTER}.csv')
 
-folder_in = 'xlsx/'
-folder_out = 'csv/'
-timestamp_master='20240621'
-master_filename=folder_in+'MapaNormativoElementos_'+timestamp_master+'.xlsx'
-sheet_name1='4. Base de Datos'
-sheet_name2='5. Leyes Transversales'
-out_csv_filename1=folder_out+'MapaNormativo_BaseDatos_'+timestamp_master+'.csv'
-out_csv_filename2=folder_out+'MapaNormativo_LeyesTransv_'+timestamp_master+'.csv'
 
-
-# Diccionario de siglas a descripciones completas
-tipo_accion_texto = {
+# Dictionaries for conversion
+TIPO_ACCION_TEXTO = {
     "RA": "Regular acceso",
     "CO": "Controlar",
     "PP": "Proteger preventivamente",
@@ -37,7 +38,7 @@ tipo_accion_texto = {
     "SA": "Sancionar"
 }
 
-tipo_actor_texto = {
+TIPO_ACTOR_TEXTO = {
     "a": "Estado",
     "b": "Empresa",
     "c": "ONGs",
@@ -45,6 +46,7 @@ tipo_actor_texto = {
     "e": "Academia",
     "f": "Individuos"
 }
+
 def convertir_tipo_accion(texto):
     #print (texto)
     # Ensure the input is a string to handle cases where it might be NaN or another type
@@ -72,10 +74,23 @@ def convertir_tipo_actor(texto):
     # Une las descripciones con coma
     return ', '.join(descripciones)
 
+def append_url(row):
+    """Append URL as a hyperlink to legal/regulatory texts."""
+    if row['URL Normativa']:
+        if row['Textos legales']:
+            row['Textos legales'] += f", <a href='{row['URL Normativa']}'> (enlace)</a>"
+        elif row['Textos reglamentarios']:
+            row['Textos reglamentarios'] += f", <a href='{row['URL Normativa']}'> (enlace)</a>"
+    return row
+
+def concat_non_empty(row):
+    """Concatenate non-empty elements from the row with ' - '."""
+    return ' - '.join([val for val in row if val])
 
 df1 = pd.read_excel(master_filename, sheet_name=sheet_name1, engine='openpyxl', dtype = str)
 # Replace 'nan' strings with an actual empty string or any other placeholder
 #df1.replace('nan', '', inplace=True)
+
 df1.fillna('', inplace=True)
 df1 = df1.replace('\n',' ', regex=True)
 #COLUMNS

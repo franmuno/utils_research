@@ -33,6 +33,12 @@ def show_sample_config():
     print("\nSample Configuration (save this as a config.json file):")
     print(json.dumps(SAMPLE_CONFIG, indent=4))
 
+# Function to extract and display the template fields
+def extract_template_fields(template_path):
+    doc = DocxTemplate(template_path)
+    fields = doc.get_undeclared_template_variables()
+    return fields
+
 def main():
     # Argument parser to accept config file path
     parser = argparse.ArgumentParser(description='Generate documents from a template using configuration.')
@@ -75,7 +81,6 @@ def main():
     df['AbstractIdFill'] = df[AbstractId].apply(lambda x: str(x).zfill(3))
     df['WordCountSumm'] = df[abstract_column_name].apply(lambda n: len(str(n).split()) if not isinstance(n, float) else 0)
 
-
     df['ThemeCode'] = df[area_column_name].map(LineDict).fillna('Unknown')
 
     df.sort_values(['ThemeCode', 'AbstractIdFill'], ascending=[True, True], inplace=True)
@@ -83,6 +88,15 @@ def main():
 
     # Ensure the result folder exists
     os.makedirs(tmp_result_folder, exist_ok=True)
+    # Extract fields from the main template
+    template_fields = extract_template_fields(template_path)
+    print(f"Fields found in template '{template_input_filename}': {template_fields}")
+
+    # Extract fields from the separator template
+    separator_template_path = os.path.join(template_folder, template_separator_filename)
+    separator_template_fields = extract_template_fields(separator_template_path)
+    print(f"Fields found in separator template '{template_separator_filename}': {separator_template_fields}")
+
 
     # Iterate through the rows OF ALL THE ABSTRACTS
     for _, row in df.iterrows():
@@ -100,6 +114,7 @@ def main():
             'Affiliation': row['Affiliation'],
             'City': row['City'],
             'Country': row['Country'],
+            
             #'CoauthorsAffiliations': row['CoauthorsAffiliations'],
             'AbsID': row[AbstractId],
             'Theme': row[area_column_name],
@@ -115,7 +130,7 @@ def main():
 
         final_filename = os.path.join(tmp_result_folder, f"{row['ThemeCode']}_{row['AbstractIdFill']}.docx")
         doc.save(final_filename)
-        print(f"Document saved: {final_filename}")
+        print(f"Single Avstract Document saved: {final_filename}")
 
     # Iterate through the AREAS - THEMES
     for area_description, theme_code in LineDict.items():

@@ -1,25 +1,23 @@
 {
-    "excel_folder": "xlsx/DOCA2024/",
-    "template_folder": "templates/DOCA2024/",
+    "excel_folder": "xlsx/",
+    "template_folder": "templates/",
     "tmp_result_folder": "tmp_processing/DOCA2024/",
-    "output_folder": "AbstractBook/DOCA2024/",
+    "output_folder": "AbstractBook/",
 
-    "rejected_folder": "rejected/DOCA2024/",
+    "rejected_folder": "rejected/",
     
-    "master_input_filename": "DOCA_9Sep.xlsx",
-    "master_output_filename": "master_output.xlsx",
+    "master_input_filename": "Doca_16Sep_BOA.xlsx",
+    "master_output_filename": "DOCA_output.xlsx",
     
-    "template_input_filename": "tpl_resumenes_DOCA7_BOA_Simple_v2.docx",
-    "template_separator_filename": "tpl_separadores_DOCA.docx",
+    "template_input_filename": "tpl_resumenes_DOCA7_BOA_Simple_v3.docx",
+    "template_separator_filename": "tpl_separadores_DOCA_v2.docx",
     
     "sheet_name": 0,
-    "abstract_id_column": "AbsID",
-    "area_column_name": "Session",
-    "abstract_column_name": "Abstract",
-    "title_column_name": "Title",
+    "abstractid_column": "AbsID",
+    "areaname_column": "Session",
+    "abstract_column": "Abstract",
 
-    
-    "line_dict": {
+    "areacode_dict": {
         "Cambio Climático": "DOCA01", 
         "Contaminación y química atmosférica": "DOCA02", 
         "Desoxigenación e hipoxia": "DOCA03", 
@@ -33,7 +31,6 @@
         "Otros temas en Oceanografía física": "DOCA11", 
         "Paleoclima": "DOCA12", 
         "Variabilidad Climática": "DOCA13"
-
     }
     
   }
